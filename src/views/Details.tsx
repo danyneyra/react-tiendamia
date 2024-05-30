@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar"
 import { products, Product } from '../assets/products'
 import ScrollToTop from "../components/ScrollToTop"
 import NotFound from './NotFound'
+import { BASE_URL } from '../assets/baseConfig'
 
 
 function Details(){
@@ -83,7 +84,7 @@ function Details(){
                     <ul className={styles["checkout-policy-list"]}>
                         <li>
                         <span className={styles["policy-icon"]}
-                            ><img src="/truck.png" alt="Truck"
+                            ><img src={BASE_URL+"truck.png"} alt="Truck"
                         /></span>
                         <span className={styles["policy-desc"]}>
                             Agrega el producto al carrito para conocer los costos de
@@ -92,7 +93,7 @@ function Details(){
                         </li>
                         <li>
                         <span className={styles["policy-icon"]}
-                            ><img src="/plane.png" alt="Plane"
+                            ><img src={BASE_URL+"plane.png"} alt="Plane"
                         /></span>
                         <span className={styles["policy-desc"]}>Recibí aproximadamente entre 10 y 15 días hábiles,
                             seleccionando envío normal</span>
