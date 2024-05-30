@@ -55,8 +55,8 @@ function Details(){
                     <fieldset className={styles["product-fieldset"]}>
                         <label className={styles["product-label"]} htmlFor="color">Color</label>
                         <select
-                        className={styles["product-select"]}
-                        id="color"
+                            className={styles["product-select"]}
+                            id="color"
                         >
                         {
                             product.colors.map((color) => (
