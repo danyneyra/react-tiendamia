@@ -7,16 +7,14 @@ footer {
 }
 
 .footer-container {
-    width: 1080px;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 15px;
 }
 
 .footer-ul {
-    width: 170px;
     list-style-type: none;
-    padding: 10px;
+    padding: 15px;
 }
 
 .footer-li {
@@ -41,4 +39,15 @@ footer {
     font-weight: bold;
     padding: 30px 0;
     box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        width: auto;
+    }
+    .footer-copyright {
+        width: auto;
+    }
+
 }

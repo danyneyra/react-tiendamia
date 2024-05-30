@@ -13,16 +13,16 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding-left: 0 20px;
+    padding: 1em;
 }
 
 .hero-title span:first-child {
-    font-size: 20px;
+    font-size: 40px;
 }
 
 .hero-title span:last-child {
-    font-size: 50px;
-    line-height: 30px;
+    font-size: 80px;
+    line-height: 50px;
 }
 
 .hero-span {
@@ -30,15 +30,16 @@
     font-weight: 700;
 }
 
-@media (min-width: 680px) {
-    .hero-title span:first-child {
-        font-size: 40px;
+@media (max-width: 768px) {
+    .hero-title{
+        width: 100%;
+        padding: 1em;
     }
-}
-
-@media (min-width: 680px) {
+    .hero-title span:first-child {
+        font-size: 30px;
+    }
     .hero-title span:last-child {
-        font-size: 100px;
+        font-size: 60px;
         line-height: 80px;
     }
 }
