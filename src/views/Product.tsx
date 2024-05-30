@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import styles from './Details.module.css'
+import styles from './Product.module.css'
 import Footer from "../components/Footer"
 import NavBar from "../components/NavBar"
 import { products, Product } from '../assets/products'
@@ -10,7 +10,7 @@ import { BASE_URL } from '../assets/baseConfig'
 
 function Details(){
     const {productId} = useParams()
-    let index:number = products.findIndex( item => item.id == productId)
+    let index:number = products.findIndex( item => item.id == productId || item.url == productId)
     let product:Product = products[index]
 
     if (index < 0){

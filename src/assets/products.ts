@@ -6,9 +6,18 @@ export interface Product {
   price:string, 
   stock:number, 
   images:string[], 
-  colors:string[], 
+  colors:string[],
+  url?:string
 
 }
+
+function stringToSlug(str:string) {
+    str = str.trim()
+    str = str.toLowerCase()
+    str = str.replace(/[^a-zA-Z0-9\s]/g, '')
+    str = str.replace(/\s+/g, '-')
+    return str;
+  }
 
 export const products: Product[] = [
   {
@@ -142,3 +151,6 @@ export const products: Product[] = [
   }
 ]
 
+products.forEach(product => {
+    product.url = stringToSlug(product.name);
+  });

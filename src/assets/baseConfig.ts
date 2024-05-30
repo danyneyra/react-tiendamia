@@ -1,2 +1,2 @@
 // baseConfig.ts
-export const BASE_URL = '/react-tiendamia/' //process.env.BASE_URL || '/';
+export const BASE_URL = '/tiendamia/' //process.env.BASE_URL || '/';

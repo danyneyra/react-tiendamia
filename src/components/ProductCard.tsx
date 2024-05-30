@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from '../assets/baseConfig';
 
 function ProductCard(props){
-  const {id, name, color, price, image} = props
+  const {name, color, price, image, url} = props
 
     return (
         <>
-            <Link className={styles["product-card"]} to={BASE_URL + "details/"+ id}>
+            <Link className={styles["product-card"]} to={BASE_URL + "product/"+ url}>
             <img
               className={styles["product-img"]}
               src={image}
