@@ -3,10 +3,12 @@ export interface Product {
   name:string, 
   brand: string,
   description:string, 
-  price:string, 
+  price:string,
+  offert?: string,
   stock:number, 
   images:string[], 
   colors:string[],
+  discount?:string
   url?:string
 
 }
@@ -19,12 +21,20 @@ function stringToSlug(str:string) {
     return str;
   }
 
+function discountPrice(price:string, offert:string){
+    let priceNormal = Number(price)
+    let priceOffert = Number(offert)
+    let porcentaje = Math.round(((priceNormal - priceOffert) * 100)/priceNormal)
+    return porcentaje.toString()
+}
+
 export const products: Product[] = [
   {
     id: "1",
     name: "Xiaomi Redmi Note 13 5G 6GB Ram 128GB",
     brand: "Xiaomi",
-    price: "989",
+    offert: "989",
+    price: "1099",
     stock: 10,
     images: [
         "https://promart.vteximg.com.br/arquivos/ids/7791265-1000-1000/image-54814c6261504f8f8c4e3fa08efe0ded.jpg",
@@ -38,7 +48,8 @@ export const products: Product[] = [
       id: "2",
       name: "iPhone 15 Pro Max",
       brand: "Apple",
-      price: "6949",
+      offert: "6949",
+      price: "6999",
       stock: 10,
       images: [
           "https://mac-center.com.pe/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__COES_823x.jpg",
@@ -55,7 +66,8 @@ export const products: Product[] = [
       id: "3",
       name: "Samsung S24 Ultra",
       brand: "Samsung",
-      price: "5699",
+      offert: "5699",
+      price: "5899",
       stock: 10,
       images: [
           "https://www.radioshackla.com/media/catalog/product/4/6/465217000012_00.jpg",
@@ -72,7 +84,8 @@ export const products: Product[] = [
       id: "4",
       name: "Google Pixel 8 Pro 256Gb",
       brand: "Google",
-      price: "3699",
+      offert: "3699",
+      price: "3899",
       stock: 5,
       images: [
           "https://m.media-amazon.com/images/I/713eEl39eLL._AC_SL1500_.jpg",
@@ -122,7 +135,8 @@ export const products: Product[] = [
       id: "7",
       name: "Samsung Galaxy Fold",
       brand: "Samsung",
-      price: "7039",
+      offert: "7039",
+      price: "7259",
       stock: 10,
       images: [
           "https://falabella.scene7.com/is/image/FalabellaPE/gsc_123329319_3648768_2?wid=800&hei=800&qlt=70",
@@ -153,4 +167,5 @@ export const products: Product[] = [
 
 products.forEach(product => {
     product.url = stringToSlug(product.name);
+    product.discount = discountPrice(product.price, product.offert)
   });

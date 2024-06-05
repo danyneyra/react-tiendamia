@@ -1,4 +1,6 @@
 import styles from "./Footer.module.css";
+import { Link } from "react-router-dom";
+import { BASE_URL } from "../assets/baseConfig";
 
 export default function Footer() {
   return (
@@ -7,9 +9,9 @@ export default function Footer() {
         <div id="footer" className={styles["footer-container"]}>
           <ul className={styles["footer-ul"]}>
             <li className={styles["footer-main-item"]}>
-              <a className={styles["footer-a"]} href="./index.html">
+              <Link className={styles["footer-a"]} to={BASE_URL+'black-friday'} >
                 Ofertas
-              </a>
+              </Link>
             </li>
             <li className={styles["footer-li"]}>
               <a className={styles["footer-a"]} href="./index.html">

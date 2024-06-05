@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from '../assets/baseConfig';
 
 function ProductCard(props){
-  const {name, color, price, image, url} = props
+  const {name, color, price, image, url, discount, offert}= props
 
     return (
         <>
@@ -17,8 +17,8 @@ function ProductCard(props){
               <span className={styles["product-title"]}>{name}</span>
               <span className={styles["product-description"]}>{color}</span>
               <div className={styles["product-price-block"]}>
-                <span className={styles["product-price"]}>{price}</span>
-                <span className={styles["product-discount"]}>50% Off</span>
+                <span className={styles["product-price"]}>S/{offert ? offert : price}</span>
+                <span className={styles["product-discount"]}>{offert ? discount+"% OFF": ""}</span>
               </div>
               <div className={styles["product-tax-policy"]}>
                 Incluye impuesto País y percepción AFIP

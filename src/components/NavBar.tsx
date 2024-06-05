@@ -51,7 +51,7 @@ export default function NavBar() {
         </div>
         <nav id="navbar">
           <ul>
-            <NavButton title="Ofertas" link="#" />
+            <NavButton title="Ofertas" link={BASE_URL+'black-friday'} />
             <NavButton title="Cómo comprar" link="#" />
             <NavButton title="Costos y tarifas" link="#" />
             <NavButton title="Mis pedidos" link="#" />
