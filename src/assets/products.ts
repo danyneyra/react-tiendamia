@@ -1,17 +1,4 @@
-export interface Product {
-  id:string, 
-  name:string, 
-  brand: string,
-  description:string, 
-  price:string,
-  offert?: string,
-  stock:number, 
-  images:string[], 
-  colors:string[],
-  discount?:string
-  url?:string
-
-}
+import { Product } from "../components/interfaces/Product"
 
 function stringToSlug(str:string) {
     str = str.trim()
@@ -167,5 +154,7 @@ export const products: Product[] = [
 
 products.forEach(product => {
     product.url = stringToSlug(product.name);
-    product.discount = discountPrice(product.price, product.offert)
+    if (product.offert){
+        product.discount = discountPrice(product.price, product.offert)
+    }
   });

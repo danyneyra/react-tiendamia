@@ -5,32 +5,30 @@ import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
 import ProductCard  from "./ProductCard";
 import { products } from "../assets/products"
-import SidebarCart from '../components/SidebarCart'
-
+//import { useState } from "react";
 
 function Home() {
 
-
   return (
     <>
-      <SidebarCart />
       <NavBar />
       <Hero first="tecnología" second="renovada"/>
       <main>
-        <div className={styles.sortPorducts}>
+        <div className="w-full inline-flex justify-end">
           <div className={styles["products-sort"]}>
             <span>Ordenar por:</span>
-            <select name="filter-sort" id="filter-sort" title="Ordernar productos">
+            <select name="filter-sort" title="Ordernar productos">
               <option value="default">-</option>
               <option value="ascendente">Nombre ascendente</option>
             </select>
           </div>
         </div>
         
-        <div className={styles["product-container"]} id="products">
+        <div className="grid grid-cols-1 justify-center pb-2 sm:grid-cols-2 sm:gap-2 lg:grid-cols-3 lg:gap-6">
           {
             products.map((product) =>(
               <ProductCard 
+                key={product.id}
                 name={product.name} 
                 id={product.id} 
                 price={product.price} 

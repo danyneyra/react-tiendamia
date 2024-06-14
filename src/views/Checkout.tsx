@@ -1,16 +1,8 @@
 import styles from './Checkout.module.css'
 import { BASE_URL } from '../assets/baseConfig'
 import { useState, useEffect, useRef } from 'react'
+import { ProductCart } from '../components/interfaces/ProductCart';
 
-interface ProductCart {
-    id:string, 
-    name:string, 
-    brand: string,
-    price:string,
-    quantity:number, 
-    image:string, 
-    color:string,
-  }
 export default function Checkout({product}) {
 
     const [quantity, setQuantity] = useState(1);
@@ -58,25 +50,25 @@ export default function Checkout({product}) {
     
   return (
     <>
-        <div className={styles["product-checkout-block"]}>
-            <div className={styles["checkout-container"]}>
-            <span className={styles["checkout-total-label"]}>Total:</span>
-            <h3 id="price" className={styles["checkout-total-price"]}>S/{product.price}</h3>
-            <p className={styles["checkout-description"]}>
+        <div className="flex p-2 sm:m-3 lg:w-[340px]">
+            <div className="p-8 bg-[#ebebeb] sm:w-full">
+            <span className="text-[#ff3b3c] text-lg font-medium">Total:</span>
+            <h3 className="text-2xl font-semibold pt-3">S/{product.price}</h3>
+            <p className="break-words">
                 Incluye impuestos.
             </p>
-            <ul className={styles["checkout-policy-list"]}>
-                <li>
-                <span className={styles["policy-icon"]}
-                    ><img src={BASE_URL+"truck.png"} alt="Truck"
-                /></span>
-                <span className={styles["policy-desc"]}>
-                    Agrega el producto al carrito para conocer los costos de
-                    envío
-                </span>
+            <ul className="mb-5">
+                <li className='flex my-4'>
+                    <span className="w-[80px]">
+                        <img src={BASE_URL+"truck.png"} alt="Truck"
+                    /></span>
+                    <span className={styles["policy-desc"]}>
+                        Agrega el producto al carrito para conocer los costos de
+                        envío
+                    </span>
                 </li>
-                <li>
-                <span className={styles["policy-icon"]}
+                <li className='flex my-4'>
+                <span className="w-[80px]"
                     ><img src={BASE_URL+"plane.png"} alt="Plane"
                 /></span>
                 <span className={styles["policy-desc"]}>Recibí aproximadamente entre 10 y 15 días hábiles,
@@ -85,8 +77,7 @@ export default function Checkout({product}) {
             </ul>
             <div className={styles["checkout-process"]}>
                 <div className={styles["top"]}>
-                <input 
-                    id="input-quantity"
+                <input
                     type="number" 
                     min="1"
                     max={product.stock}

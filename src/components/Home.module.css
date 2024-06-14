@@ -23,8 +23,13 @@ main {
   }
 }
 
-.products-sort{
+.sort-container{
   display: inline-flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.products-sort{
+  display: flex;
   justify-content: flex-end;
   padding: 1em 1em;
   gap: 1em;
