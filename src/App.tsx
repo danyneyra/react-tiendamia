@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Home from "./components/Home"
+import Home from "./views/Home"
 import Cart from "./views/Cart"
 import Product from "./views/Product"
 import OnSale from "./views/OnSale"
 import NotFound from "./views/NotFound"
 import { BASE_URL } from './assets/baseConfig'
+import { Provider } from "react-redux"
+import { store } from "./store"
 
 function App() {
   const browserRouter = createBrowserRouter([
@@ -15,9 +17,9 @@ function App() {
     {path: "/*", element: <NotFound />}
   ])
   return (
-    <>
+    <Provider store={store}>
       <RouterProvider router={browserRouter}/>
-    </>
+    </Provider>
   )
 }
 

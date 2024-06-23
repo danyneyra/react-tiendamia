@@ -1,4 +1,9 @@
-export default function CartResume({ total }) {
+import { useAppSelector } from "../store/hooks";
+
+export default function CartResume() {
+
+  const total= useAppSelector((store) => store.products.total)
+  
   return (
     <div className="w-[340px] h-[220px] flex flex-col justify-between rounded-md p-[30px] m-[10px] bg-[#f2f2f2]">
       <div className="flex-grow flex flex-col justify-between">
@@ -9,10 +14,10 @@ export default function CartResume({ total }) {
         </h2>
         <div className="flex justify-between items-center">
           <h3>Total</h3>
-          <strong>${total}</strong>
+          <strong>S/ {total}</strong>
         </div>
         <small className="pb-[10px]">
-          Incluye impuesto PAIS y percepción AFIP.
+          Incluye impuestos
         </small>
       </div>
       <button

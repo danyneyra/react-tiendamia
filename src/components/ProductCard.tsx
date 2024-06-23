@@ -4,7 +4,7 @@ import { BASE_URL } from '../assets/baseConfig';
 
 function ProductCard(props){
   const {name, color, price, image, url, discount, offert}= props
-
+  
     return (
         <>
             <Link className={styles["product-card"]} to={BASE_URL + "product/"+ url}>

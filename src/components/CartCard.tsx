@@ -1,15 +1,19 @@
 import { useRef } from "react"
-import { ProductCart } from "./interfaces/ProductCart";
+import { ProductCart } from "../interfaces/ProductCart";
+import { useDispatch } from "react-redux";
+import { calculateTotal } from "../store/actions/products";
 
 export default function CartCard({product}) {
 
   const units = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch()
   const manageUnits = () => {
     let productsOnCart = JSON.parse(localStorage.getItem('cart') || '[]') as ProductCart[]
     const one = productsOnCart.find((each) => each.id === product.id)
     if (one != null && units.current != null){
       one.quantity = Number(units.current.value);
       localStorage.setItem("cart", JSON.stringify(productsOnCart));
+      dispatch(calculateTotal({products: productsOnCart}))
     }
   };
 

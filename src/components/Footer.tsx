@@ -92,7 +92,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className="w-[1080px] text-center text-white font-bold py-[30px] px-0 border-t-[1px] border-t-[#ba53fb]">
+        <div className="w-full text-center text-white font-bold py-[30px] px-0 border-t-[1px] border-t-[#ba53fb]">
           Curso de HTML + CSS 2023
         </div>
       </footer>

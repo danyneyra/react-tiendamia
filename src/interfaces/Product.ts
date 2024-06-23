@@ -3,11 +3,11 @@ export interface Product {
     name:string, 
     brand: string,
     description:string, 
-    price:string,
-    offert?: string,
+    price:number,
+    offert?: number,
     stock:number, 
     images:Array<string>, 
     colors:Array<string>,
-    discount?:string
+    discount?:number
     url?:string
   }

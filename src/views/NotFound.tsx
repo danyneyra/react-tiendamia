@@ -7,7 +7,7 @@ function NotFound(){
         <>
         <NavBar/>
         <Hero first="página" second="no encontrada"/>
-        <main>
+        <main className="w-full flex justify-center items-center p-5 flex-grow-1">
         </main>
         <Footer/>
         </>

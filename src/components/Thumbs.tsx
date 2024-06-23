@@ -1,4 +1,4 @@
-import ProductProp from "./interfaces/ProductProp"
+import ProductProp from "../interfaces/ProductProp"
 
 export default function Thumbs(props: ProductProp) {
     const {product} = props

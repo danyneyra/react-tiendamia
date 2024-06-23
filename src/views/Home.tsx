@@ -1,21 +1,34 @@
-//import { useEffect, useState } from 'react';
-import styles from "./Home.module.css";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
-import ProductCard  from "./ProductCard";
-import { products } from "../assets/products"
-//import { useState } from "react";
+import ProductCard  from "../components/ProductCard";
+import { Product } from "../interfaces/Product";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useAppSelector } from "../store/hooks";
+
 
 function Home() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const text = useAppSelector((store) => store.products.text)
+
+  useEffect(() => {
+    axios.get("products.json")
+      .then((res) => {
+        const filterProducts = res.data.filter((each:Product )=> each.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()))
+        setProducts(filterProducts)
+      })
+      .catch((err) => console.log(err));
+  }, [text]);
 
   return (
     <>
       <NavBar />
       <Hero first="tecnología" second="renovada"/>
-      <main>
+      <main className="w-full flex flex-col justify-center items-center p-5">
+
         <div className="w-full inline-flex justify-end">
-          <div className={styles["products-sort"]}>
+          <div className="flex justify-end p-2 gap-2 items-center">
             <span>Ordenar por:</span>
             <select name="filter-sort" title="Ordernar productos">
               <option value="default">-</option>

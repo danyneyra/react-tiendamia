@@ -1,21 +1,23 @@
-import styles from './Checkout.module.css'
 import { BASE_URL } from '../assets/baseConfig'
-import { useState, useEffect, useRef } from 'react'
-import { ProductCart } from '../components/interfaces/ProductCart';
+import { useState, useRef } from 'react'
+import { ProductCart } from '../interfaces/ProductCart';
+import { useDispatch } from 'react-redux';
+import { addToCart, showSidebar, updateToCart } from '../store/slices/cart';
+import { useAppSelector } from '../store/hooks';
 
 export default function Checkout({product}) {
 
+    /* Estados Globales */ 
+    const productsInCart = useAppSelector(store => store.cart.products)
     const [quantity, setQuantity] = useState(1);
     const units = useRef<HTMLInputElement>(null);
-    const [productsInStorage, setProductsInStorage] = useState<ProductCart[]>([]);
 
-    useEffect(() => {
-        const storedProducts = JSON.parse(localStorage.getItem('cart') || '[]') as ProductCart[];
-        setProductsInStorage(storedProducts)
-    },[product.id]);
+    /* Disparador */
+    const dispatch = useDispatch()
 
+    /* Funciones */
     const manageCart = () => {
-        const one = productsInStorage.find(each => each.id === product.id);
+        const one = productsInCart.find(each => each.id === product.id);
         
         if (!one) {
             
@@ -30,21 +32,27 @@ export default function Checkout({product}) {
                 quantity: quantity
             }
 
-            const updatedProducts = [...productsInStorage, productCart];
-            setProductsInStorage(updatedProducts);
+            const updatedProducts = [...productsInCart, productCart];
             localStorage.setItem('cart', JSON.stringify(updatedProducts));
+
+            dispatch(addToCart(productCart))
+            dispatch(showSidebar())
+
         } else {
 
-            //const updatedProducts = productsInStorage.filter(each => each.id == product.id);
-            const updatedProducts = productsInStorage.map( item => {
+            const updatedProducts = productsInCart.map( item => {
                 if (item.id  === product.id){
                     return {...item, quantity: item.quantity + quantity}
                 }
                 return item
             })
-            setProductsInStorage(updatedProducts);
             localStorage.setItem('cart', JSON.stringify(updatedProducts));
+
+            dispatch(updateToCart(updatedProducts))
+            dispatch(showSidebar())
         }
+
+
     };
 
     
@@ -62,7 +70,7 @@ export default function Checkout({product}) {
                     <span className="w-[80px]">
                         <img src={BASE_URL+"truck.png"} alt="Truck"
                     /></span>
-                    <span className={styles["policy-desc"]}>
+                    <span>
                         Agrega el producto al carrito para conocer los costos de
                         envío
                     </span>
@@ -71,13 +79,14 @@ export default function Checkout({product}) {
                 <span className="w-[80px]"
                     ><img src={BASE_URL+"plane.png"} alt="Plane"
                 /></span>
-                <span className={styles["policy-desc"]}>Recibí aproximadamente entre 10 y 15 días hábiles,
+                <span>Recibí aproximadamente entre 10 y 15 días hábiles,
                     seleccionando envío normal</span>
                 </li>
             </ul>
-            <div className={styles["checkout-process"]}>
-                <div className={styles["top"]}>
+            <div className="gap-y-5">
+                <div className="flex mb-3">
                 <input
+                    className='h-10 rounded-xl border-0 w-16 mr-2 p-2 box-border text-center'
                     type="number" 
                     min="1"
                     max={product.stock}
@@ -94,7 +103,7 @@ export default function Checkout({product}) {
                 />
                 <button 
                     type="button" 
-                    className={styles["cart-btn"]}
+                    className="w-full bg-[#ff3b3c] text-white font-normal border-0 h-10 rounded-xl cursor-pointer"
                     onClick={manageCart}
                 >
                     Agregar a Carrito

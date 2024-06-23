@@ -4,7 +4,7 @@ import Hero from "../components/Hero";
 import CartCard from "../components/CartCard";
 import CartResume from "../components/CartResume";
 import { useState, useEffect } from "react";
-import { ProductCart } from "../components/interfaces/ProductCart";
+import { ProductCart } from "../interfaces/ProductCart";
 
 
 export default function Cart() {
@@ -29,7 +29,7 @@ export default function Cart() {
             }
         </div>
         
-        <CartResume total={"1500"} />
+        <CartResume />
       </main>
       <Footer />
     </>

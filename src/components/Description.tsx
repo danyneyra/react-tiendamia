@@ -1,4 +1,4 @@
-import ProductProp from "./interfaces/ProductProp"
+import ProductProp from "../interfaces/ProductProp"
 export default function Description(props: ProductProp) {
     const {product} = props
   return (
