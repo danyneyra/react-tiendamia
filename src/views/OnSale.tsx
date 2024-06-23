@@ -2,10 +2,24 @@ import styles from './OnSale.module.css'
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import OnSaleCard from '../components/OnSaleCard';
-import { products } from "../assets/products"
 import ScrollToTop from '../components/ScrollToTop';
+import axios from "axios";
+import { useState, useEffect } from 'react';
+import { Product } from '../interfaces/Product';
 
 export default function OnSale() {
+  
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    axios.get("products.json")
+      .then((res) => {
+        const products = res.data
+        setProducts(products)
+      })
+      .catch((err) => console.log(err));
+  }, [products]);
+
   return (
     <>
       <ScrollToTop />
