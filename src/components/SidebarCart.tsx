@@ -93,7 +93,7 @@ export default function SidebarCart() {
             </div>
             <div className="fixed bottom-0 z-[1000] bg-white">
                 <div className="flex flex-col p-5 gap-2 w-[350px] shadow-3xl">
-                    <div className="flex justify-between font-semibold">
+                    <div className="flex justify-between font-semibold text-lg">
                         <span>Total:</span>
                         <span>S/{totalCart}</span>
                     </div>

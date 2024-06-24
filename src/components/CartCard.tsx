@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import { ProductCart } from "../interfaces/ProductCart";
 import { useDispatch } from "react-redux";
-import { calculateTotal } from "../store/actions/products";
+import { updateToCart } from "../store/slices/cart";
 
 export default function CartCard({product}) {
 
@@ -13,7 +13,7 @@ export default function CartCard({product}) {
     if (one != null && units.current != null){
       one.quantity = Number(units.current.value);
       localStorage.setItem("cart", JSON.stringify(productsOnCart));
-      dispatch(calculateTotal({products: productsOnCart}))
+      dispatch(updateToCart(productsOnCart))
     }
   };
 
@@ -30,6 +30,7 @@ export default function CartCard({product}) {
           <span className="font-semibold text-[16px]">{product.name}</span>
           <span className="text-[12px]">Color: {product.color}</span>
           <input
+          autoComplete="off"
             className="w-[70px] rounded-lg border-[1px] border-[#cecece] p-[5px] pl-[15px] text-[14px]"
             type="number"
             name="quantity"

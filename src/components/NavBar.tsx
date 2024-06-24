@@ -4,8 +4,8 @@ import SidebarCart from "./SidebarCart";
 import { BASE_URL } from '../assets/baseConfig'
 import { useRef, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import {captureText} from "../store/actions/products";
 import { showSidebar } from "../store/slices/cart";
+import { textFind } from "../store/slices/products";
 
 export default function NavBar() {
 
@@ -20,7 +20,7 @@ export default function NavBar() {
   //Total de Productos en carrito
   const quantityCart = useAppSelector(store => store.cart.quantity)
   //Texto de búsqueda
-  const textStore = useAppSelector(store => store.products.text)
+  const textStore = useAppSelector(store => store.products.textFind)
 
   /* Estados Locales */
 
@@ -35,7 +35,7 @@ export default function NavBar() {
   }
 
   const searchProduct = () =>{
-    dispatch(captureText({text: textSearch.current?.value}))
+    dispatch(textFind(textSearch.current?.value))
   }
 
   /* UseEffect */

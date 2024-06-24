@@ -10,7 +10,7 @@ import { useAppSelector } from "../store/hooks";
 
 function Home() {
   const [products, setProducts] = useState<Product[]>([]);
-  const text = useAppSelector((store) => store.products.text)
+  const text = useAppSelector(store => store.products.textFind)
 
   useEffect(() => {
     axios.get("products.json")
@@ -24,7 +24,7 @@ function Home() {
   return (
     <>
       <NavBar />
-      <Hero first="tecnología" second="renovada"/>
+      <Hero first="tecnología" second="renovada" visible={1}/>
       <main className="w-full flex flex-col justify-center items-center p-5">
 
         <div className="w-full inline-flex justify-end">

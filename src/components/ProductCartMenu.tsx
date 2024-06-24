@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../assets/baseConfig";
 import { ProductCart } from "../interfaces/ProductCart";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { updateToCart } from "../store/slices/cart";
+import { hideSidebar, updateToCart } from "../store/slices/cart";
 
 export default function ProductCartMenu({ product }) {
 
   /* Referencias */
   const units = useRef<HTMLInputElement>(null);
   const contentProduct = useRef<HTMLDivElement>(null);
+
+  const navigate = useNavigate()
 
   /* Disparador */
   const dispatch = useDispatch()
@@ -42,14 +44,19 @@ export default function ProductCartMenu({ product }) {
     }
   }
   
+  //Ir a Producto
+  const LinkToProduct = () =>{
+    dispatch(hideSidebar())
+    navigate(BASE_URL + "product/" + product.id)
+  }
 
   return (
     <>
-      <div ref={contentProduct} className="flex">
-        <div className="w-[120px] h-[120px]">
-          <Link to={BASE_URL + "product/" + product.id}>
-            <img src={product.image} alt={product.name} />
-          </Link>
+      <div ref={contentProduct} className="flex gap-2">
+        <div onClick={LinkToProduct} className="w-[120px] h-[120px]">
+          {/* <Link to={BASE_URL + "product/" + product.id}> */}
+            <img className="max-w-[120px] max-h-[120px] overflow-hidden bg-contain cursor-pointer" src={product.image} alt={product.name} />
+          {/* </Link> */}
         </div>
         <div className="flex flex-col">
           <span className="text-[#878787] text-xs">{product.brand}</span>

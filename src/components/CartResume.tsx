@@ -1,9 +1,39 @@
+import { useDispatch } from "react-redux";
 import { useAppSelector } from "../store/hooks";
+import Swal from 'sweetalert2'
+import { updateToCart } from "../store/slices/cart";
+
+
 
 export default function CartResume() {
 
-  const total= useAppSelector((store) => store.products.total)
-  
+  const total= useAppSelector((store) => store.cart.total)
+  const dispatch = useDispatch()
+
+  const showConfirmationAlert = () => {
+    Swal.fire({
+      title: '¿Deseas realizar la compra?',
+      text: 'Acepta para procesar tu compra',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí'
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        localStorage.clear()
+        dispatch(updateToCart([]))
+        
+        Swal.fire(
+          'Compra Realizado',
+          'Gracias por realizar tu compra',
+          'success'
+        );
+      }
+    });
+  };
+
   return (
     <div className="w-[340px] h-[220px] flex flex-col justify-between rounded-md p-[30px] m-[10px] bg-[#f2f2f2]">
       <div className="flex-grow flex flex-col justify-between">
@@ -21,6 +51,7 @@ export default function CartResume() {
         </small>
       </div>
       <button
+        onClick={showConfirmationAlert}
         className="w-full h-[40px] bg-[#ff3b3c] text-white font-bold border-0 rounded-md"
         id="buy"
         type="button"
